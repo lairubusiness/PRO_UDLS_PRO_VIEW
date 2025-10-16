@@ -1,0 +1,85 @@
+/* Binary Background Animation */
+.binary-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.08; /* Very subtle visibility */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.binary-code {
+    position: absolute;
+    color: var(--color-primary);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: nowrap;
+    opacity: 0.7;
+    text-shadow: 0 0 5px rgba(95, 125, 198, 0.5);
+    animation: float 30s linear infinite;
+    user-select: none;
+}
+
+/* Different animation directions and timings */
+.binary-code:nth-child(2n) {
+    animation-name: float-reverse;
+    animation-duration: 40s;
+}
+
+.binary-code:nth-child(3n) {
+    animation-name: float-up;
+    animation-duration: 50s;
+}
+
+.binary-code:nth-child(5n) {
+    animation-name: float-diagonal;
+    animation-duration: 60s;
+}
+
+/* Keyframe Animations */
+@keyframes float {
+    0% {
+        transform: translateY(100%) translateX(0);
+    }
+    100% {
+        transform: translateY(-100%) translateX(0);
+    }
+}
+
+@keyframes float-reverse {
+    0% {
+        transform: translateY(-100%) translateX(100px);
+    }
+    100% {
+        transform: translateY(100%) translateX(0);
+    }
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(100%) translateX(50px);
+    }
+    100% {
+        transform: translateY(-100%) translateX(100px);
+    }
+}
+
+@keyframes float-diagonal {
+    0% {
+        transform: translateY(100%) translateX(-100px);
+    }
+    100% {
+        transform: translateY(-100%) translateX(100px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .binary-code {
+        font-size: 12px;
+    }
+}
