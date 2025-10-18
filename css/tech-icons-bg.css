@@ -1,0 +1,59 @@
+/* Tech Icons Background Animation */
+.tech-icons-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Behind binary background */
+    opacity: 0.1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.tech-icon {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.2;
+    filter: drop-shadow(0 0 5px rgba(95, 125, 198, 0.3));
+    animation: float-icon 25s linear infinite;
+    user-select: none;
+    will-change: transform;
+}
+
+/* Different animation timings and delays */
+.tech-icon:nth-child(5n+1) { animation-duration: 40s; animation-delay: 0s; }
+.tech-icon:nth-child(5n+2) { animation-duration: 50s; animation-delay: -10s; }
+.tech-icon:nth-child(5n+3) { animation-duration: 60s; animation-delay: -20s; }
+.tech-icon:nth-child(5n+4) { animation-duration: 45s; animation-delay: -15s; }
+.tech-icon:nth-child(5n+5) { animation-duration: 55s; animation-delay: -5s; }
+
+/* Different icon colors */
+.tech-icon.html5 { color: #e34f26; }
+.tech-icon.css3 { color: #1572b6; }
+.tech-icon.js { color: #f7df1e; }
+.tech-icon.react { color: #61dafb; }
+.tech-icon.node { color: #339933; }
+.tech-icon.python { color: #3776ab; }
+.tech-icon.java { color: #007396; }
+.tech-icon.php { color: #777bb4; }
+.tech-icon.database { color: #336791; }
+.tech-icon.git { color: #f05032; }
+
+/* Keyframes for floating animation */
+@keyframes float-icon {
+    0% {
+        transform: translateY(100%) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.2;
+    }
+    90% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateY(-100%) translateX(calc(-100vw * var(--random-x, 0.5))) rotate(360deg);
+        opacity: 0;
+    }
+}

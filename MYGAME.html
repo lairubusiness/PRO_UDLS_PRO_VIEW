@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games - U.D Lahiru Sandaruwan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Game Card Styles */
+        .games-container {
+            padding: 80px 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            color: #a1a1a1;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.05);
+        }
+
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-content {
+            padding: 25px;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            margin: 0 0 10px;
+            color: #fff;
+        }
+
+        .game-description {
+            color: #b3b3b3;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .game-features {
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+
+        .feature i {
+            color: #6a11cb;
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .play-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tech-badge {
+            background: rgba(106, 17, 203, 0.2);
+            color: #b388ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Navigation Games Button */
+        .nav-games-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-games-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+            color: white;
+        }
+
+        .nav-games-btn i {
+            margin-right: 6px;
+            font-size: 1rem;
+        }
+
+        .nav-games-text {
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-games-text {
+                display: none;
+            }
+            .nav-games-btn {
+                padding: 8px 12px;
+                margin-right: 5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="games-container">
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo"><a href="index.html"><span class="logo-text">UDLS</span><span class="logo-dot">.</span></a></div>
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#" class="nav-link active">My Games</a></li>
+                        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="#" class="nav-games-btn active" title="My Games">
+                        <i class="fas fa-gamepad"></i>
+                        <span class="nav-games-text">My Games</span>
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">My <span>Games</span></h2>
+            <p class="section-subtitle">Explore the games I've developed</p>
+        </div>
+
+        <div class="games-grid">
+            <!-- Space Run Game Card -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="images/Gemini_Generated_Image_cbgkt8cbgkt8cbgk.png" alt="SPACE RUN Game">
+                    <div class="game-overlay">
+                        <h3 class="game-title">SPACE RUN</h3>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Pygame</span>
+                            <span class="tech-badge">2D</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-content">
+                    <p class="game-description">
+                        A thrilling 2D space adventure where you control a character in a hover car, navigating through space, 
+                        collecting power-ups, and upgrading abilities in an endless runner format.
+                    </p>
+                    <div class="game-features">
+                        <div class="feature">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Endless running through space</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Power-up collection system</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-level-up-alt"></i>
+                            <span>Character progression & upgrades</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-trophy"></i>
+                            <span>Score tracking & leaderboards</span>
+                        </div>
+                    </div>
+                    <a href="https://space-run-lbkl.vercel.app/" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i> Play Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- More game cards can be added here in the future -->
+            <div class="game-card coming-soon">
+                <div class="game-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px;">
+                    <i class="fas fa-plus-circle" style="font-size: 3rem; color: #6a11cb; margin-bottom: 20px;"></i>
+                    <h3 class="game-title" style="color: #fff;">Your Next Game</h3>
+                    <p class="game-description" style="color: #b3b3b3;">
+                        More exciting games coming soon! Stay tuned for new adventures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or use preferred color scheme
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the current theme
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-theme');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
